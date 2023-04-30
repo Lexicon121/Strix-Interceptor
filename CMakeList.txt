@@ -1,0 +1,44 @@
+cmake_minimum_required(VERSION 3.0)
+project(strix_swarm_node_docker)
+
+# Set the path to the Dockerfile
+set(DOCKER_FILE ${CMAKE_CURRENT_SOURCE_DIR}/Dockerfile)
+
+# Set the name and version of the Docker image
+set(DOCKER_IMAGE_NAME "strix_swarm_node")
+set(DOCKER_IMAGE_TAG "latest")
+
+# Set the path to the source files
+set(SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/strix_swarm_node.py)
+
+# Build the Docker image
+add_custom_command(
+    OUTPUT ${DOCKER_FILE}.built
+    COMMAND docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ${CMAKE_CURRENT_SOURCE_DIR}
+    DEPENDS ${SOURCE_FILES} ${DOCKER_FILE}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+)
+
+# Tag the Docker image with the latest tag
+add_custom_command(
+    OUTPUT ${DOCKER_FILE}.tagged
+    COMMAND docker tag ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ${DOCKER_IMAGE_NAME}:latest
+    DEPENDS ${DOCKER_FILE}.built
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+)
+
+# Push the Docker image to the Docker Hub registry
+add_custom_target(
+    push_docker_image
+    COMMAND docker push ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
+    COMMAND docker push ${DOCKER_IMAGE_NAME}:latest
+    DEPENDS ${DOCKER_FILE}.tagged
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+)
+
+# Alias for building and pushing the Docker image
+add_custom_target(
+    build_and_push ALL
+    DEPENDS ${DOCKER_FILE}.tagged
+    COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target push_docker_image
+)

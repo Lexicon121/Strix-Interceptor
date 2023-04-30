@@ -36,6 +36,26 @@ If you'd like to contribute to the Strix project, please follow these steps:
 3. Submit a pull request to the main Strix repository.
 4. The Strix development team will review your changes and merge them if they are accepted.
 
+## Usage
+
+To use the Strix drone, you will need to run the `strix_swarm_node.py` ROS node, which handles communication with the drone and coordinates its actions with the rest of the swarm. You can run the node using the following command:
+
+rosrun strix_swarm_node strix_swarm_node.py
+
+
+The Strix drone is also designed to work seamlessly with other UAVs in an ROS swarm. To coordinate the Strix drone with an ROS swarm, you can use the ROS Navigation Stack to perform localization, path planning, and obstacle avoidance. You can also use the ROS topics and messages provided by the `strix_swarm_node` node to coordinate the actions of the individual drones in the swarm.
+
+## Docker
+
+To make it easier to deploy the Strix drone to the cloud, we've provided a Dockerfile that packages the `strix_swarm_node.py` node into a Docker container. You can use the following commands to build and push the Docker image to a registry like Docker Hub:
+
+mkdir build
+cd build
+cmake ..
+make build_and_push
+
+This will build the Docker image using the Dockerfile, tag it with the specified name and version, and push it to the Docker Hub registry.
+
 ## License
 
 The Strix drone is released under the terms of the MIT License, a free and open-source software license. You are free to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software, subject to the conditions of the license. See the LICENSE file for details.

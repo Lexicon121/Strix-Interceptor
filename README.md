@@ -1,6 +1,6 @@
 # Strix-Interceptor
 
-![Strix Interceptor Image](https://i.imgur.com/9w0ZMyg.gif](https://i.imgur.com/tlmA0gC.gif)
+![Strix Interceptor Image](https://i.imgur.com/tlmA0gC.gif)
 
 The Strix Interceptor Drone is an open-source, multi-functional UAV designed to intercept other drones and defend against anti-drone RF systems. Features Pixhawk autonomous flight, matrix motor config, and multi RF spoofing capabilities.
 

@@ -1,4 +1,4 @@
-# Strix-Interceptor
+# Strix-Interceptor (DEFCON31 Demo Labs Project)
 
 ![Strix Interceptor Image](https://i.imgur.com/tlmA0gC.gif)
 

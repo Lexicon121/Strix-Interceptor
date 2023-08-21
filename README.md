@@ -12,6 +12,16 @@ The Strix Interceptor Drone is an open-source, multi-functional UAV designed to 
 - Matrix motor configuration for improved stability and maneuverability
 - Open-source design and code
 
+## Required Parts
+
+There are some parts you need to get started with this project:
+
+1. Raspberry Pi or Nvidia Jetson Nano
+2. Pixhawk flight controller or modular flight controller preferably with an autopilot function
+3. HackRF one module or Hak5 WiFi pineapple
+4. A 3d printer would really help
+5. An FPV or modular drone platform especially one with a good payload capacity of 2KG
+
 ## Getting Started
 
 To get started with the Strix drone, follow these steps:
